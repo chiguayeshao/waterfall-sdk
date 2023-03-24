@@ -1,0 +1,9 @@
+node_modules
+example
+src
+*.log
+*.lock
+.DS_Store
+.git
+.vscode
+.idea

@@ -1,15 +1,15 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 
 // 定义组件属性类型
-interface Props {
-  items: React.ReactNode[]; // 要显示的项目
-  columnCount: number; // 列数
-  itemWidth: number; // 项目宽度
-  itemHeight: number; // 项目高度
-  itemMargin: number; // 项目边距
+export interface WaterfallProps {
+  items: React.ReactNode[];
+  columnCount: number;
+  itemWidth: number;
+  itemHeight: number;
+  itemMargin: number;
 }
 
-const Waterfall: React.FC<Props> = ({
+const Waterfall: React.FC<WaterfallProps> = ({
   items,
   columnCount,
   itemWidth,
