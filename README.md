@@ -1,46 +1,100 @@
-# Getting Started with Create React App
+# Waterfall SDK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+一个使用 React、TypeScript 和 Tailwind CSS 实现的瀑布流组件 SDK。
 
-## Available Scripts
+## 安装
 
-In the project directory, you can run:
+要在您的项目中安装 Waterfall SDK，请运行以下命令：
 
-### `npm start`
+```bash
+npm install --save waterfall-sdk
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 使用
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+在您的 React 项目中，按照以下步骤使用 Waterfall SDK：
 
-### `npm test`
+1. 导入 Waterfall 组件：
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```javascript
+   import Waterfall from "waterfall-sdk";
+   ```
 
-### `npm run build`
+2. 使用 Waterfall 组件：
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```javascript
+   const App: React.FC = () => {
+        const items = Array.from({ length: TOTAL*ITEMS }, (*, id) => (
+            <div
+                key={id}
+                className="relative w-full h-full flex items-center justify-center text-white"
+                style={{ backgroundColor: "#ccc" }} >
+                {id + 1}
+            </div>
+        ));
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        return (
+            <Waterfall
+                items={items}
+                columnCount={COLUMN_COUNT}
+                itemWidth={ITEM_WIDTH}
+                itemHeight={ITEM_HEIGHT}
+                itemMargin={ITEM_MARGIN}
+            />
+        );
+   };
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   请根据您的需求设置 `TOTAL_ITEMS`、`COLUMN_COUNT`、`ITEM_WIDTH`、`ITEM_HEIGHT` 和 `ITEM_MARGIN` 变量。
 
-### `npm run eject`
+## API
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Waterfall
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Props
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+| 属性        | 类型              | 描述                   |
+| ----------- | ----------------- | ---------------------- |
+| items       | React.ReactNode[] | 要显示的项目数组       |
+| columnCount | number            | 瀑布流的列数           |
+| itemWidth   | number            | 每个项目的宽度（像素） |
+| itemHeight  | number            | 每个项目的高度（像素） |
+| itemMargin  | number            | 项目之间的边距（像素） |
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 示例
 
-## Learn More
+下面是一个完整的使用示例：
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+// App.tsx
+import React from "react";
+import Waterfall from "waterfall-sdk";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const COLUMN_COUNT = 1;
+const ITEM_WIDTH = 300;
+const ITEM_HEIGHT = 200;
+const ITEM_MARGIN = 16;
+const TOTAL_ITEMS = 100;
+
+const App: React.FC = () => {
+    const items = Array.from({ length: TOTAL*ITEMS }, (*, id) => (
+        <div
+            key={id}
+            className="relative w-full h-full flex items-center justify-center text-white"
+            style={{ backgroundColor: "#ccc" }} >
+            {id + 1}
+        </div>
+    ));
+
+    return (
+        <Waterfall
+            items={items}
+            columnCount={COLUMN_COUNT}
+            itemWidth={ITEM_WIDTH}
+            itemHeight={ITEM_HEIGHT}
+            itemMargin={ITEM_MARGIN}
+        />
+    );
+};
+export default App;
+```
